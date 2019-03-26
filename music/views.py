@@ -27,11 +27,15 @@ def favorite(request,album_id):
 from django.views import generic
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.core.urlresolvers import reverse_lazy
-from .models import Singer,Category,Album
+from .models import Singer,Category,Album,Youtube
 from django.shortcuts import render, get_object_or_404
 
 
 from itertools import chain
+import requests
+import random
+from bs4 import BeautifulSoup
+from django.http import HttpResponse
 
 class IndexView(generic.ListView):
   template_name = 'music/index.html'
@@ -55,7 +59,41 @@ class IndexView(generic.ListView):
 
 def album_rank(request):
   return render(request,'music/album_rank.html')
-  
+
+def music_mood(request):
+  #刪除前一次操作 save 的資料
+  Youtube.objects.all().delete()
+
+  url = "https://www.youtube.com/playlist?list=PLh6i9qrH2UdfEUN31d334DTutPJ1rz1cv"
+  html = requests.get(url)
+  #content = request.content
+  soup = BeautifulSoup(html.text, "html.parser")
+  for all_mv in soup.select(".pl-video-title"):
+    data = all_mv.select("a")
+    song_name = data[0].get_text()
+    #Youtube.objects.create(song_name = song_name)
+    #print("https://www.youtube.com{}".format(data[0].get("href").split('&')[0]))
+    html_text = "https://www.youtube.com{}".format(data[0].get("href").split('&')[0])
+    HttpResponse(Youtube.objects.create(website= html_text,song_name = song_name))
+  youtube =  Youtube.objects.all()
+
+  # list the order
+  random_youtube = list(youtube)
+  # random the order
+  random.shuffle(random_youtube)
+  # get the first video, take embed IDcode of Youtube
+  str1 = ''.join(map(str,random_youtube)).split('v=')[1][0:11]
+
+  # get the first video after random order
+  one_youtube  = random_youtube[0]
+
+  context = { 'youtube':youtube, 'one_youtube':one_youtube, 'str1':str1 }
+  return render(request,'music/music_mood.html',context)
+
+
+
+
+
 def music_news(request):
   return render(request,'music/music_news.html')
 

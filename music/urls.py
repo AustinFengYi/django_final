@@ -31,6 +31,9 @@ urlpatterns = [
     # /music/album_rank/
     url(r'^album_rank/$',views.album_rank, name='album_rank' ),
 
+    # /music/music_mood/
+    url(r'^music_mood/$',views.music_mood, name='music_mood' ),
+
     # /music/music_news/
     url(r'^music_news/$',views.music_news, name='music_news' ),
 

@@ -1,0 +1,38 @@
+<style>
+  .music_mood{
+    margin-top: 100px;
+  }
+</style>
+
+
+
+{% extends 'music/base.html' %}
+{% block title %}首頁{% endblock %}
+
+{% block body %}
+
+  <section class="music_mood">
+    <div class="container">
+      <div class="col-md-12">
+        <h3>心情點播</h3>
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ str1 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        
+        
+        {% for youtube in youtube %}
+          <p>{{ youtube.song_name }}</p>
+          <p><a href="{{ youtube.website }}" target="_blank">{{ youtube.website }}</a></p>
+        {% endfor%}
+        
+        <br>
+        <p>{{ one_youtube.song_name }}</p>
+        <p><a href="{{ one_youtube.website }}" target="_blank">{{ one_youtube.website }}</a></p>
+
+        
+        
+        
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
