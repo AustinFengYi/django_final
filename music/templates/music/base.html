@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %} Python Music {% endblock %}</title>
+  <!--  Loads the path to your static files  -->
+  {% load staticfiles %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}" />
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <!-- navbar -->
+  <header id="header-primary">
+    <div class="container">
+      <nav> 
+        <ul class="nav-primary">
+          <li class="active">
+            <a href="{% url 'music:index' %}"><span>音樂首頁</span></a> 
+          </li>
+
+          <li>
+            <a href="{% url 'music:album_rank' %}"><span>排行榜</span></a>
+          </li>
+
+          <li>
+            <a href="#"><span>心情點播</span></a>
+          </li>
+
+          <li>
+            <a href="{% url 'music:music_news' %}"><span>音樂新聞</span></a>
+          </li>
+
+          <li>
+            <a href="#"><span>音樂專欄</span></a>
+          </li>
+        </ul>        
+      </nav>
+    </div>
+  </header>
+
+  {% block body %}
+  {% endblock %}
+</body>
+</html>

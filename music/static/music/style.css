@@ -1,0 +1,140 @@
+/*CSS 基礎樣式設定*/  
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #f6f6f6;
+}
+
+.container{
+  width:90%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+ul, ol {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+a, a:hover, a:focus {
+  /*margin: 0px;*/
+  /*padding: 0px;*/
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/*===========================共同版面===============================*/
+/*=====================================================
+=====================================================*/
+/*設定 Header */
+#header-primary{
+  position: fixed;
+  width: 100%;
+  top: 0 ;
+  right: 0;
+  left: 0;
+  background: #315990;
+  opacity: 0.9;
+  z-index: 100;
+}
+
+.nav-primary{
+  float: left;
+}
+
+.nav-primary li{
+  display: inline-block;
+}
+
+.nav-primary li a{
+  color: black;
+  text-transform: capitalize;
+  display: block;
+  padding: 25px 12px;
+  letter-spacing: 1px;
+  font-size: 15px;
+  transition: .3s linear;
+}
+
+.nav-primary li a:hover{
+  color: #FDF5E6;
+  transition: .3s linear;
+}
+
+/*===========================半共同版面===============================*/
+/*=====================================================*/
+/*-------設定 secondary-header的 CSS 樣式----------*/
+.secondary-header{
+  margin-top: 100px;
+}
+
+.secondary-header .nav-pills-center{
+  margin-bottom: 10px;
+  text-align: center;
+
+}
+
+.secondary-header .nav-pills-center li{
+  float: none;
+  display: inline-block;  
+}
+
+/*=====================================================*/
+/*=====================================================*/
+/*-------設定 index-corousel的 CSS 樣式----------*/
+.index-corousel{
+  padding:30px 0 50px 0;
+}
+
+#myCarousel{  
+  background: #686a6e;
+  height: 450px;
+}
+
+.slide-wrapper{
+  padding: 10%;
+  margin-top: -50px;
+}
+
+.slide-content{
+  color: #fff;
+}
+
+.slide-image .thumbnail img{
+  width: 100%;
+  height: 300px;
+}
+
+.slide-content p{
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.slide-content a{
+  margin-top: 10px;
+} 
+
+

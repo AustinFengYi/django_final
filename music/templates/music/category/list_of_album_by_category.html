@@ -1,0 +1,231 @@
+{% extends 'music/base.html' %}
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block body %}
+  <!--  Song Category --> 
+  <section class="secondary-header">
+    <ul class="nav nav-pills nav-pills-center">
+      <li role="presentation">
+        <a href="{% url 'music:index' %}"><span>全部專輯</span></a> 
+      </li>
+      
+      {% for categories in categories %}
+      <li role="presentation" class="">
+        <a href="{% url 'music:list_of_album_by_category' categories.id %}"><span>{{ categories.name }}專輯</span></a> 
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <!--  Index Corousel --> 
+  <section class="index-corousel">
+    <div class="container">
+      <div class="col-md-12">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <!--first item-->
+          <div class="item active">
+            <div class="container">
+
+              <div class="slide-wrapper">
+                <div class="col-md-6">
+                  <div class="slide-image">
+                    <div class="thumbnail">
+                      <!--img src="image/slide/slide-1.jpg" alt="slide-1"-->
+                      {% load staticfiles %}
+                      <img src="{% static 'music/images/slider/slide-1.jpg' %}"/> 
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="slide-content">
+                    <h3>Lorem ipsum dolor sit.</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore dolor, cupiditate consectetur veritatis incidunt ratione!</p>
+                    <!--<a href="about-content.html" class="btn btn-primary">繼續閱讀</a>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--second item-->
+          <div class="item">
+            <div class="container">
+
+              <div class="slide-wrapper">
+                <div class="col-md-6">
+                  <div class="slide-image">
+                    <div class="thumbnail">
+                      <!--img src="image/slide/slide-2.jpg" alt="slide-1"-->
+                      {% load staticfiles %}
+                      <img src="{% static 'music/images/slider/slide-2.jpg' %}"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="slide-content">
+                    <h3>Lorem ipsum dolor sit.</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste assumenda corporis, sequi.</p>
+                    <!--<a href="about-content.html" class="btn btn-primary">繼續閱讀</a>--> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--third item-->
+          <div class="item">
+            <div class="container">
+              <div class="slide-wrapper">
+                <div class="col-md-6">
+                  <div class="slide-image">
+                    <div class="thumbnail">
+                      <!--img src="image/slide/slide-3.jpg" alt="slide-1"-->
+                      {% load staticfiles %}
+                      <img src="{% static 'music/images/slider/slide-3.jpg' %}"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="slide-content">
+                    <h3>Research Highlight</h3>
+                    <p>In this paper, we demonstrate a simple approach of self-assembled process to form a very smooth and compacted TiO2 underlayer film from ultrafine titanium oxide (TiO2) nanocrystals with dimension of 4 nm for improving the electrical properties and device performances of dye-sensitized solar cells (DSSCs).</p>
+                    <!--<a href="about-content.html" class="btn btn-primary">繼續閱讀</a>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="album-recommend">
+    <div class="container">
+      <div class="col-md-12">
+        <h3>影音推薦</h3>
+        <div class="row-fluid row">
+          <div class="col-md-4" >
+            <img src="https://img.youtube.com/vi/rD-T5pzH9b0/maxresdefault.jpg" alt="">
+            <h4>盧廣仲 Crowd Lu【愛情怎麼了嗎 Self-complacent】Official Music Video</h4>
+          </div>
+
+          <div class="col-md-4" >
+            <img src="https://img.youtube.com/vi/Dab4EENTW5I/maxresdefault.jpg" alt="">
+            <h4>Stray Kids "MIROH" M/V</h4>
+          </div>
+
+          <div class="col-md-4" >
+            <img src="https://img.youtube.com/vi/nn48zwymeNA/maxresdefault.jpg" alt="">
+            <h4>Why Don't We - Cold in LA 寒冷洛杉磯 (華納official HD 高畫質官方中字版)</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="album-rank">
+    <div class="container">
+      <div class="col-md-12">
+        <h3>排行榜</h3>
+        <div class="row-fluid row">
+          <!--table1-->
+          <div class="col-md-4">
+            <table class="table-rank table table-striped table-bordered">
+              <tr>
+                <th>熱門單曲</th>
+              </tr>
+
+              <tr> 
+              {% for albums in all_albums %}  
+                {% if albums.category_id = 1 %}                 
+                  <td>
+                    <div style="float: left;">Top</div>
+                    <div style="float: left;">{{ albums.album_title }}<br>{{ albums.singer.singer_name }}</div>
+                  </td>
+                {% endif %}  
+              {% endfor %}      
+              <tr>
+            </table>
+          </div>
+
+          <!--table2-->
+          <div class="col-md-4">
+            <table class="table-rank table table-striped table-bordered">
+              <tr>
+                <th>熱門專輯</th>
+              </tr>
+
+              <tr> 
+              {% for albums in albums %}  
+                <td>
+                  <div style="float: left;">{{ forloop.counter }}</div>
+                  <div style="float: left;">{{ albums.album_title }}<br>{{ albums.singer.singer_name }}</div>
+                </td> 
+              {% endfor %}      
+              <tr>
+            </table>
+          </div>
+
+          <!--table3-->
+          <div class="col-md-4">
+            <table class="table-rank table table-striped table-bordered">
+              <tr>
+                <th>懷舊專輯/th>
+              </tr>
+
+              <tr> 
+              {% for albums in albums %}  
+                <td>
+                  <div style="float: left;">{{ forloop.counter }}</div>
+                  <div style="float: left;">{{ albums.album_title }}<br>{{ albums.singer.singer_name }}</div>
+                </td> 
+              {% endfor %}      
+              <tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="popular-singer">
+    <div class="container">
+      <div class="col-md-12">
+        <h3>熱門歌手</h3>
+        <div class="row-fluid row">
+          <div class="singer-content">
+            {% for singers in singers|slice:":6" %}
+              <div class="col-md-2"> 
+                <img src="{{singers.singer_avatar.url}}">
+                <p class="text-center">{{singers.singer_name}}</p>
+              </div> 
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+{% endblock %}
