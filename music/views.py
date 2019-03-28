@@ -114,8 +114,9 @@ def list_of_album_by_category(request, category_id):
     category = get_object_or_404(Category,pk=category_id)
     albums = Album.objects.filter(category=category)
     singers = Singer.objects.filter(category=category)
+    songs = Song.objects.filter(category=category)
   template_name = 'music/category/list_of_album_by_category.html'
-  context = {'categories':categories,'albums':albums,'singers':singers ,'category':category}
+  context = {'categories':categories,'albums':albums,'singers':singers ,'category':category,'songs':songs}
   return render(request, template_name, context)
 
 # singer/show

@@ -170,19 +170,58 @@
           <div class="col-md-4">
             <table class="table-rank table table-striped table-bordered">
               <tr>
-                <th>華語榜單</th>
+                <th class="text-center">華語榜單</th>
               </tr>
 
-              <tr> 
-              {% for albums in all_albums %}  
-                {% if albums.category_id = 1 %}                 
+              {% for album in all_albums|slice:":6" %}  
+                {% if album.category_id = 1 %} 
+                <tr>             
                   <td>
-                    <div style="float: left;">Top</div>
-                    <div style="float: left;">{{ albums.album_title }}<br>{{ albums.singer.singer_name }}</div>
-                  </td>
+                    <div style="float: left;padding-top: 10px;">Top</div>
+                    <div style="float: left;padding-left: 20px;">
+                      <a href="{% url 'music:detail' album.id %}">
+                        <strong><em>{{ album.album_title }}</em></strong>
+                      </a>
+                      <br>
+                      <p>{{ album.singer.singer_name }}</p>
+                    </div>
+
+                    <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{album.id}}" style="float: right;">
+                    收聽
+                  </button>
+                  
+                  <!-- Modal -->
+                  <div class="modal fade" id="{{album.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <span class="modal-title" id="exampleModalLabel">
+                          {{ album.album_title }}
+                          </span>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          {% for song in album.song_set.all %}
+                            
+                            <audio controls>
+                              <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                            </audio>
+                            <span style="padding-left: 20px;">
+                              {{ song.song_name }}
+                            </span>           
+                          {% endfor %}
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                  </td> 
+                <tr>
                 {% endif %}  
-              {% endfor %}      
-              <tr>
+              {% endfor %} 
             </table>
           </div>
 
@@ -190,39 +229,117 @@
           <div class="col-md-4">
             <table class="table-rank table table-striped table-bordered">
               <tr>
-                <th>西洋榜單</th>
+                <th class="text-center">西洋榜單</th>
               </tr>
 
-              <tr> 
-              {% for albums in all_albums %}  
-                {% if albums.category_id = 4 %}                 
+              {% for album in all_albums|slice:":6" %}  
+                {% if album.category_id = 2 %} 
+                <tr>             
                   <td>
-                    <div style="float: left;">Top</div>
-                    <div style="float: left;">{{ albums.album_title }}<br>{{ albums.singer.singer_name }}</div>
-                  </td>
+                    <div style="float: left;padding-top: 10px;">Top</div>
+                    <div style="float: left;padding-left: 20px;">
+                      <a href="{% url 'music:detail' album.id %}">
+                        <strong><em>{{ album.album_title }}</em></strong>
+                      </a>
+                      <br>
+                      <p>{{ album.singer.singer_name }}</p>
+                    </div>
+
+                    <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{album.id}}" style="float: right;">
+                    收聽
+                  </button>
+                  
+                  <!-- Modal -->
+                  <div class="modal fade" id="{{album.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <span class="modal-title" id="exampleModalLabel">
+                          {{ album.album_title }}
+                          </span>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          {% for song in album.song_set.all %}
+                            
+                            <audio controls>
+                              <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                            </audio>
+                            <span style="padding-left: 20px;">
+                              {{ song.song_name }}
+                            </span>           
+                          {% endfor %}
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                  </td> 
+                <tr>
                 {% endif %}  
-              {% endfor %}      
-              <tr>
+              {% endfor %} 
             </table>
           </div>
 
-          <!--table3-->
+          <!-- table 3-->
           <div class="col-md-4">
             <table class="table-rank table table-striped table-bordered">
               <tr>
-                <th>台語榜單</th>
+                <th class="text-center">台語榜單</th>
               </tr>
 
-              <tr> 
-              {% for albums in all_albums %}  
-                {% if albums.category_id = 5 %}                 
+              {% for album in all_albums|slice:":6" %}  
+                {% if album.category_id = 3 %} 
+                <tr>             
                   <td>
-                    <div style="float: left;">Top</div>
-                    <div style="float: left;">{{ albums.album_title }}<br>{{ albums.singer.singer_name }}</div>
-                  </td>
+                    <div style="float: left;padding-top: 10px;">Top</div>
+                    <div style="float: left;padding-left: 20px;">
+                      <a href="{% url 'music:detail' album.id %}">
+                        <strong><em>{{ album.album_title }}</em></strong>
+                      </a>
+                      <br>
+                      <p>{{ album.singer.singer_name }}</p>
+                    </div>
+
+                    <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{album.id}}" style="float: right;">
+                    收聽
+                  </button>
+                  
+                  <!-- Modal -->
+                  <div class="modal fade" id="{{album.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <span class="modal-title" id="exampleModalLabel">
+                          {{ album.album_title }}
+                          </span>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          {% for song in album.song_set.all %}
+                            
+                            <audio controls>
+                              <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                            </audio>
+                            <span style="padding-left: 20px;">
+                              {{ song.song_name }}
+                            </span>           
+                          {% endfor %}
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                  </td> 
+                <tr>
                 {% endif %}  
-              {% endfor %}      
-              <tr>
+              {% endfor %} 
             </table>
           </div>
         </div>
@@ -236,10 +353,12 @@
         <h3>熱門歌手</h3>
         <div class="row-fluid row">
           <div class="singer-content">
-            {% for singers in all_singers|slice:":6" %}
+            {% for singer in all_singers|slice:":6" %}
             <div class="col-md-2"> 
-              <img src="{{singers.singer_avatar.url}}">
-              <p class="text-center">{{ singers.singer_name }}</p>
+              <a href="{% url 'music:singer_show' singer.id %}">
+                <img src="{{singer.singer_avatar.url}}" style="border-radius: 50%;">
+              </a>
+              <p class="text-center">{{ singer.singer_name }}</p>
             </div>
             {% endfor %}
           </div>

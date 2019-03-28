@@ -1,23 +1,36 @@
+<style>
+.album-content{
+  margin-top: 160px;
+}
+</style>
+
+
 {% extends 'music/base.html' %}
 {% block title %}專輯內容{% endblock %}
 
 {% block body %}
-  <img src="{{album.album_logo.url}}" class="img-responsive">
+<section class="album-content">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="row-fluid row">
 
-  <h1>{{album.album_title}} - {{ album.category }}</h1>
+        <div class="col-md-3 row-fluid row">
+          <img src="{{ album.album_logo.url }}">
+        </div>
 
-  <h3>{{album.artist}}</h3>
+        <div class="col-md-9 row-fluid row"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-
-  {% if error_message %}
-    <p><strong>{{ error_message }}</strong></p>
-  {% endif %}
-
-  
-  {% for song in album.song_set.all %}
-    {{ song.song_title }} 
-    <br>
-  {% endfor %}
-    
-  </form>
+<section class="album-song">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="row-fluid row">
+        <h4>專輯歌曲 <span>( 共 {{ album.song_set.all.count }} 首)</span></h4>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
