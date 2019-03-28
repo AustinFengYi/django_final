@@ -1,38 +1,396 @@
 <style>
-  .music_mood{
-    margin-top: 100px;
-  }
-</style>
+body {
+  background: linear-gradient(45deg, #e10522 0%, rgba(225, 5, 34, 0) 70%), linear-gradient(225deg, #0adbd8 10%, rgba(10, 219, 216, 0) 80%), linear-gradient(315deg, #09f505 100%, rgba(9, 245, 5, 0) 70%);
+}
+.music_mood{
+  margin-top: 100px;
+}
 
+.absolute-center,
+.menu,
+.menu .btn .fa,
+.menu .btn.trigger .line {
+  position: fixed;
+  top: 50%;
+  left: 80%;
+  transform: translateX(-95%) translateY(-50%);
+}
+
+.menu {
+  width: 5em;
+  height: 5em;
+}
+
+.menu .btn {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  opacity: 0;
+  z-index: -10;
+  cursor: pointer;
+  -webkit-transition: opacity 1s, z-index 0.3s, -webkit-transform 1s;
+  transition: opacity 1s, z-index 0.3s, transform 1s;
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.menu .btn .fa {
+  font-size: 3em;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+.menu .btn:hover .fa { color: rgba(255, 255, 255, 0.7); }
+
+.menu .btn.trigger {
+  opacity: 1;
+  z-index: 100;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.menu .btn.trigger:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.menu .btn.trigger:hover .line { background-color: rgba(255, 255, 255, 0.7); }
+
+.menu .btn.trigger:hover .line:before,
+.menu .btn.trigger:hover .line:after { background-color: rgba(255, 255, 255, 0.7); }
+
+.menu .btn.trigger .line {
+  width: 60%;
+  height: 6px;
+  background: #000;
+  border-radius: 6px;
+  -webkit-transition: background-color 0.3s, height 0.3s, top 0.3s;
+  transition: background-color 0.3s, height 0.3s, top 0.3s;
+}
+
+.menu .btn.trigger .line:before,
+.menu .btn.trigger .line:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: #000;
+  border-radius: 6px;
+  -webkit-transition: background-color 0.3s, -webkit-transform 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.menu .btn.trigger .line:before {
+  top: -12px;
+  -webkit-transform-origin: 15% 100%;
+  -ms-transform-origin: 15% 100%;
+  transform-origin: 15% 100%;
+}
+
+.menu .btn.trigger .line:after {
+  top: 12px;
+  -webkit-transform-origin: 25% 30%;
+  -ms-transform-origin: 25% 30%;
+  transform-origin: 25% 30%;
+}
+
+.menu .rotater {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+
+.menu.active .btn-icon {
+  opacity: 1;
+  z-index: 50;
+}
+
+.menu.active .trigger .line {
+  height: 0px;
+  top: 45%;
+}
+
+.menu.active .trigger .line:before {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 110%;
+}
+
+.menu.active .trigger .line:after {
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  width: 110%;
+}
+
+/* horrible things are happening here
+for some reason nth-child(1) is always busy and elements starting from 2 */
+
+.rotater:nth-child(1) {
+  -webkit-transform: rotate(-22.5deg);
+  -ms-transform: rotate(-22.5deg);
+  transform: rotate(-22.5deg);
+}
+
+.menu.active .rotater:nth-child(1) .btn-icon {
+  -webkit-transform: translateX(-10em) rotate(22.5deg);
+  -ms-transform: translateX(-10em) rotate(22.5deg);
+  transform: translateX(-10em) rotate(22.5deg);
+}
+
+.rotater:nth-child(2) {
+  -webkit-transform: rotate(22.5deg);
+  -ms-transform: rotate(22.5deg);
+  transform: rotate(22.5deg);
+}
+
+.menu.active .rotater:nth-child(2) .btn-icon {
+  -webkit-transform: translateX(-10em) rotate(-22.5deg);
+  -ms-transform: translateX(-10em) rotate(-22.5deg);
+  transform: translateX(-10em) rotate(-22.5deg);
+}
+
+.rotater:nth-child(3) {
+  -webkit-transform: rotate(67.5deg);
+  -ms-transform: rotate(67.5deg);
+  transform: rotate(67.5deg);
+}
+
+.menu.active .rotater:nth-child(3) .btn-icon {
+  -webkit-transform: translateX(-10em) rotate(-67.5deg);
+  -ms-transform: translateX(-10em) rotate(-67.5deg);
+  transform: translateX(-10em) rotate(-67.5deg);
+}
+
+.rotater:nth-child(4) {
+  -webkit-transform: rotate(112.5deg);
+  -ms-transform: rotate(112.5deg);
+  transform: rotate(112.5deg);
+}
+
+.menu.active .rotater:nth-child(4) .btn-icon {
+  -webkit-transform: translateX(-10em) rotate(-112.5deg);
+  -ms-transform: translateX(-10em) rotate(-112.5deg);
+  transform: translateX(-10em) rotate(-112.5deg);
+}
+
+.rotater:nth-child(5) {
+  -webkit-transform: rotate(157.5deg);
+  -ms-transform: rotate(157.5deg);
+  transform: rotate(157.5deg);
+}
+
+.menu.active .rotater:nth-child(5) .btn-icon {
+  -webkit-transform: translateX(-10em) rotate(-157.5deg);
+  -ms-transform: translateX(-10em) rotate(-157.5deg);
+  transform: translateX(-10em) rotate(-157.5deg);
+}
+
+.rotater:nth-child(6) {
+  -webkit-transform: rotate(202.5deg);
+  -ms-transform: rotate(202.5deg);
+  transform: rotate(202.5deg);
+}
+
+.menu.active .rotater:nth-child(6) .btn-icon {
+  -webkit-transform: translateX(-10em) rotate(-202.5deg);
+  -ms-transform: translateX(-10em) rotate(-202.5deg);
+  transform: translateX(-10em) rotate(-202.5deg);
+}
+
+.rotater:nth-child(7) {
+  -webkit-transform: rotate(247.5deg);
+  -ms-transform: rotate(247.5deg);
+  transform: rotate(247.5deg);
+}
+
+.menu.active .rotater:nth-child(7) .btn-icon {
+  -webkit-transform: translateX(-10em) rotate(-247.5deg);
+  -ms-transform: translateX(-10em) rotate(-247.5deg);
+  transform: translateX(-10em) rotate(-247.5deg);
+}
+
+.rotater:nth-child(8) {
+  -webkit-transform: rotate(292.5deg);
+  -ms-transform: rotate(292.5deg);
+  transform: rotate(292.5deg);
+}
+
+.menu.active .rotater:nth-child(8) .btn-icon {
+  -webkit-transform: translateX(-10em) rotate(-292.5deg);
+  -ms-transform: translateX(-10em) rotate(-292.5deg);
+  transform: translateX(-10em) rotate(-292.5deg);
+}
+
+.rotater:nth-child(9) {
+  -webkit-transform: rotate(337.5deg);
+  -ms-transform: rotate(337.5deg);
+  transform: rotate(337.5deg);
+}
+
+.menu.active .rotater:nth-child(9) .btn-icon {
+  -webkit-transform: translateX(-10em) rotate(-337.5deg);
+  -ms-transform: translateX(-10em) rotate(-337.5deg);
+  transform: translateX(-10em) rotate(-337.5deg);
+}
+</style>
 
 
 {% extends 'music/base.html' %}
 {% block title %}首頁{% endblock %}
 
 {% block body %}
-
-  <section class="music_mood">
-    <div class="container">
-      <div class="col-md-12">
-        <h3>心情點播</h3>
-
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ str1 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        
-        
-        {% for youtube in youtube %}
-          <p>{{ youtube.song_name }}</p>
-          <p><a href="{{ youtube.website }}" target="_blank">{{ youtube.website }}</a></p>
-        {% endfor%}
-        
-        <br>
-        <p>{{ one_youtube.song_name }}</p>
-        <p><a href="{{ one_youtube.website }}" target="_blank">{{ one_youtube.website }}</a></p>
-
-        
-        
-        
+<section class="music_mood">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="menu">
+        <div class="btn trigger"> <span class="line"></span> </div>
+        <div class="rotater">
+          <div class="btn btn-icon"> 
+            <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
+              {% csrf_token %}
+              <h3 >開心 </h3>
+              <input type="submit" name="happy" value="開心" class="btn btn-success">  
+            </form>  
+          </div>
+        </div>
+        <div class="rotater">
+          <div class="btn btn-icon">
+            <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
+              {% csrf_token %}
+              <h3 >開心 </h3>
+              <input type="submit" name="happy" value="開心" class="btn btn-success">  
+            </form>
+          </div>
+        </div>
+        <div class="rotater">
+          <div class="btn btn-icon">
+            <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
+              {% csrf_token %}
+              <h3 >開心 </h3>
+              <input type="submit" name="happy" value="開心" class="btn btn-success">  
+            </form>
+          </div>
+        </div>
+        <div class="rotater">
+          <div class="btn btn-icon">
+            <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
+              {% csrf_token %}
+              <h3 >開心 </h3>
+              <input type="submit" name="happy" value="開心" class="btn btn-success">  
+            </form>
+          </div>
+        </div>
+        <div class="rotater">
+          <div class="btn btn-icon">
+            <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
+              {% csrf_token %}
+              <h3 >開心 </h3>
+              <input type="submit" name="happy" value="開心" class="btn btn-success">  
+            </form>
+          </div>
+        </div>
+        <div class="rotater">
+          <div class="btn btn-icon">
+            <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
+              {% csrf_token %}
+              <h3 >開心 </h3>
+              <input type="submit" name="happy" value="開心" class="btn btn-success">  
+            </form>
+          </div>
+        </div>
+        <div class="rotater">
+          <div class="btn btn-icon">
+            <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
+              {% csrf_token %}
+              <h3 >開心 </h3>
+              <input type="submit" name="happy" value="開心" class="btn btn-success">  
+            </form>
+          </div>
+        </div>
+        <div class="rotater">
+          <div class="btn btn-icon">
+            <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
+              {% csrf_token %}
+              <h3 >開心 </h3>
+              <input type="submit" name="happy" value="開心" class="btn btn-success">  
+            </form>
+          </div>
+        </div>
       </div>
+
+      <!-- 心情點播 + 歌單列表-->
+      <h3>心情點播</h3>
+
+      <iframe width="700" height="400" src="https://www.youtube.com/embed/{{ str1 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+      <form action="{% url 'music:music_mood' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" name="happy" value="開心" class="btn btn-success"> 
+        <input type="submit" name="emotion" value="抒情" class="btn btn-success"> 
+        <input type="submit" name="high" value="嗨歌" class="btn btn-success"> 
+      </form>  
+      
+      <p>{{ one_youtube.song_name }}</p>
+      <p><a href="{{ one_youtube.website }}" target="_blank">{{ one_youtube.website }}</a></p>  
+
+      <br><br>
+
+      {% for youtube in youtube %}
+        <p>{{ youtube.song_name }}</p>
+        <p><a href="{{ youtube.website }}" target="_blank">{{ youtube.website }}</a></p>
+      {% endfor%}      
+           
     </div>
-  </section>
+  </div>
+</section>
+
+
+<!-----------------------------------------------------------
+---------------------------------------------------------------->
+<!-- jquery-->
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+<script>
+$(document).ready(function() {
+  $(".trigger").click(function() {
+    $(".menu").toggleClass("active"); 
+  });
+});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 
 {% endblock %}
+
+

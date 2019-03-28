@@ -42,14 +42,12 @@ class Album(models.Model):
 class Song(models.Model):
   album = models.ForeignKey(Album, on_delete=models.CASCADE)
   song_name = models.CharField(max_length = 100)
-  song_lyric = models.CharField(max_length = 1000)
-
-  file_type = models.CharField(max_length = 10)
-  song_title = models.CharField(max_length = 250)
+  song_lyric = models.CharField(max_length = 1000,blank=True)
+  audio_file = models.FileField()
  
 
   def __str__(self):
-    return self.song_name + ' - ' + self.song_lyric()
+    return self.song_name + ' - ' + self.song_lyric
 
 
 class Youtube(models.Model):
