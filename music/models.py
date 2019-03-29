@@ -40,7 +40,7 @@ class Album(models.Model):
     return self.album_title + ' - ' + self.album_release_date + ' - ' + self.album_intro
 
 class Song(models.Model):
-  #singer = models.ForeignKey(Singer)
+  singer = models.ForeignKey(Singer)
   category = models.ForeignKey(Category)
   album = models.ForeignKey(Album, on_delete=models.CASCADE)
   song_name = models.CharField(max_length = 100)
