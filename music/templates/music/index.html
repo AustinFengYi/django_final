@@ -1,15 +1,28 @@
 <style>
-  .index{
-    margin-top: 100px;
-  }
+.index{
+  margin-top: 100px;
+}
 
-  .album-rank{
-    margin-top: 40px;
-  }
+.album-rank{
+  margin-top: 40px;
+}
 
-  .popular-singer{
-    margin-top: 40px;
-  }
+.popular-singer{
+  margin: 40px 0 50px 0;
+}
+
+.video-play button{
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;   
+}
+
+.index-check{
+  margin-bottom: 50px;
+}
 
 </style>
 
@@ -51,23 +64,16 @@
             <div class="container">
 
               <div class="slide-wrapper">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="slide-image">
                     <div class="thumbnail">
                       <!--img src="image/slide/slide-1.jpg" alt="slide-1"-->
                       {% load staticfiles %}
-                      <img src="{% static 'music/images/slider/slide-1.jpg' %}"/> 
+                      <img src="{% static 'music/images/slider/index-slider-1.jpg' %}"/> 
                     </div>
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <div class="slide-content">
-                    <h3>Lorem ipsum dolor sit.</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore dolor, cupiditate consectetur veritatis incidunt ratione!</p>
-                    <!--<a href="about-content.html" class="btn btn-primary">繼續閱讀</a>-->
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -77,21 +83,14 @@
             <div class="container">
 
               <div class="slide-wrapper">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="slide-image">
                     <div class="thumbnail">
                       <!--img src="image/slide/slide-2.jpg" alt="slide-1"-->
                       {% load staticfiles %}
-                      <img src="{% static 'music/images/slider/slide-2.jpg' %}"/>
+                      <img src="{% static 'music/images/slider/index-slider-2.jpg' %}"/>
                     </div>
                   </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="slide-content">
-                    <h3>Lorem ipsum dolor sit.</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste assumenda corporis, sequi.</p>
-                    <!--<a href="about-content.html" class="btn btn-primary">繼續閱讀</a>--> </div>
                 </div>
               </div>
             </div>
@@ -101,23 +100,16 @@
           <div class="item">
             <div class="container">
               <div class="slide-wrapper">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="slide-image">
                     <div class="thumbnail">
                       <!--img src="image/slide/slide-3.jpg" alt="slide-1"-->
                       {% load staticfiles %}
-                      <img src="{% static 'music/images/slider/slide-3.jpg' %}"/>
+                      <img src="{% static 'music/images/slider/index-slider-3.jpg' %}"/>
                     </div>
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <div class="slide-content">
-                    <h3>Research Highlight</h3>
-                    <p>In this paper, we demonstrate a simple approach of self-assembled process to form a very smooth and compacted TiO2 underlayer film from ultrafine titanium oxide (TiO2) nanocrystals with dimension of 4 nm for improving the electrical properties and device performances of dye-sensitized solar cells (DSSCs).</p>
-                    <!--<a href="about-content.html" class="btn btn-primary">繼續閱讀</a>-->
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -135,6 +127,7 @@
         </a>
       </div>
     </div>
+  </div>
   </section>
 
   <section class="album-recommend">
@@ -142,19 +135,83 @@
       <div class="col-md-12">
         <h3>影音推薦</h3>
         <div class="row-fluid row">
-          <div class="col-md-4" >
+          <div class="video-play" >
             <img src="https://img.youtube.com/vi/rD-T5pzH9b0/maxresdefault.jpg" alt="">
-            <h4>盧廣仲 Crowd Lu【愛情怎麼了嗎 Self-complacent】Official Music Video</h4>
+            <!--------------------------------------------------------------------->
+            <!-- Button trigger modal -->
+            <span>
+              <button type="button" data-toggle="modal" data-target="#trigger_1">
+                觀看影音
+              </button>
+            </span>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="trigger_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-body"> 
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/rD-T5pzH9b0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>       
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+            <!--------------------------------------------------------------------->
+
+            <h4 style="margin-top: 20px;">盧廣仲 Crowd Lu【愛情怎麼了嗎 Self-complacent】Official Music Video</h4>
           </div>
 
-          <div class="col-md-4" >
+
+          <div class="video-play" >
             <img src="https://img.youtube.com/vi/Dab4EENTW5I/maxresdefault.jpg" alt="">
-            <h4>Stray Kids "MIROH" M/V</h4>
+            <!--------------------------------------------------------------------->
+            <!-- Button trigger modal -->
+            <span>
+              <button type="button" data-toggle="modal" data-target="#trigger_2">
+                觀看影音
+              </button>
+            </span>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="trigger_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-body"> 
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Dab4EENTW5I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>       
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+            <!--------------------------------------------------------------------->
+
+            <h4 style="margin-top: 20px;">Stray Kids "MIROH" M/V</h4>
           </div>
 
-          <div class="col-md-4" >
+          <div class="video-play" >
             <img src="https://img.youtube.com/vi/nn48zwymeNA/maxresdefault.jpg" alt="">
-            <h4>Why Don't We - Cold in LA 寒冷洛杉磯 (華納official HD 高畫質官方中字版)</h4>
+            
+            <!--------------------------------------------------------------------->
+            <!-- Button trigger modal -->
+            <span>
+              <button type="button" data-toggle="modal" data-target="#trigger_3">
+                觀看影音
+              </button>
+            </span>
+            <!-- Modal -->
+            <div class="modal fade" id="trigger_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-body"> 
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/85dtGS32FIs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>     
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+            <!--------------------------------------------------------------------->
+
+            <h4 style="margin-top: 20px;">Why Don't We - Cold in LA 寒冷洛杉磯 (華納official HD 高畫質官方中字版)</h4>
           </div>
         </div>
       </div>
@@ -164,7 +221,7 @@
   <section class="album-rank">
     <div class="container">
       <div class="col-md-12">
-        <h3>排行榜</h3>
+        <h3 style="margin-bottom: 20px;">排行榜</h3>
         <div class="row-fluid row">
           <!--table1-->
           <div class="col-md-4">
@@ -187,37 +244,37 @@
                     </div>
 
                     <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{album.id}}" style="float: right;">
-                    收聽
-                  </button>
-                  
-                  <!-- Modal -->
-                  <div class="modal fade" id="{{album.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <span class="modal-title" id="exampleModalLabel">
-                          {{ album.album_title }}
-                          </span>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{album.id}}" style="float: right;">
+                      收聽
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="{{album.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <span class="modal-title" id="exampleModalLabel">
+                            {{ album.album_title }}
+                            </span>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            {% for song in album.song_set.all %}
+                              
+                              <audio controls>
+                                <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                              </audio>
+                              <span style="padding-left: 20px;">
+                                {{ song.song_name }}
+                              </span>           
+                            {% endfor %}
+                          </div>
+                          <div class="clearfix"></div>
                         </div>
-                        <div class="modal-body">
-                          {% for song in album.song_set.all %}
-                            
-                            <audio controls>
-                              <source src="{{ song.audio_file.url }}" type="audio/mpeg">
-                            </audio>
-                            <span style="padding-left: 20px;">
-                              {{ song.song_name }}
-                            </span>           
-                          {% endfor %}
-                        </div>
-                        <div class="clearfix"></div>
                       </div>
                     </div>
-                  </div>
                   </td> 
                 <tr>
                 {% endif %}  
@@ -305,37 +362,37 @@
                     </div>
 
                     <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{album.id}}" style="float: right;">
-                    收聽
-                  </button>
-                  
-                  <!-- Modal -->
-                  <div class="modal fade" id="{{album.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <span class="modal-title" id="exampleModalLabel">
-                          {{ album.album_title }}
-                          </span>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{album.id}}" style="float: right;">
+                      收聽
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="{{album.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <span class="modal-title" id="exampleModalLabel">
+                            {{ album.album_title }}
+                            </span>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            {% for song in album.song_set.all %}
+                              
+                              <audio controls>
+                                <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                              </audio>
+                              <span style="padding-left: 20px;">
+                                {{ song.song_name }}
+                              </span>           
+                            {% endfor %}
+                          </div>
+                          <div class="clearfix"></div>
                         </div>
-                        <div class="modal-body">
-                          {% for song in album.song_set.all %}
-                            
-                            <audio controls>
-                              <source src="{{ song.audio_file.url }}" type="audio/mpeg">
-                            </audio>
-                            <span style="padding-left: 20px;">
-                              {{ song.song_name }}
-                            </span>           
-                          {% endfor %}
-                        </div>
-                        <div class="clearfix"></div>
                       </div>
                     </div>
-                  </div>
                   </td> 
                 <tr>
                 {% endif %}  
@@ -350,7 +407,7 @@
   <section class="popular-singer">
     <div class="container">
       <div class="col-md-12">
-        <h3>熱門歌手</h3>
+        <h3 style="margin-bottom: 30px;">熱門歌手</h3>
         <div class="row-fluid row">
           <div class="singer-content">
             {% for singer in all_singers|slice:":6" %}
@@ -366,26 +423,30 @@
       </div>
     </div>
   </section>
+  <!--
+  <section class="index-check">
+    <div class="container">
+      <div class="col-md-12">
+        <a href="{% url 'music:album-add' %}">新增專輯</a>-->
+        <!--{% if all_albums %}
+          <h3 style="margin-top: 30px;">here are all my albums </h3>
+          <ul>
+            {% for album in all_albums %}
+              <li>
+                {{album.singer.singer_name}}
+                <a href="{% url 'music:detail' album.id %}">{{album.album_title}}</a>
+              </li>
+            {% endfor %}
+            
+          </ul>
 
-  <section class="index">
-    <a href="{% url 'music:album-add' %}">新增專輯</a>
+        {% else %}
 
-    {% if all_albums %}
-      <h3>here are all my albums </h3>
-      <ul>
-        {% for album in all_albums %}
-          <li>
-            {{album.singer.singer_name}}
-            <a href="{% url 'music:detail' album.id %}">{{album.album_title}}</a>
-          </li>
-        {% endfor %}
-        
-      </ul>
+          <h3>you don't have any album</h3>
 
-    {% else %}
-
-      <h3>you don't have any album</h3>
-
-    {% endif %}
+        {% endif %}
+      </div>
+    </div>
   </section>
+  -->
 {% endblock %}

@@ -28,14 +28,17 @@ urlpatterns = [
     # /music/singer_show/
     url(r'^singer_show/(?P<singer_id>[0-9]+)/$',views.singer_show, name='singer_show' ),
 
+    # /music/singer_profile/
+    url(r'^singer_profile/(?P<singer_id>[0-9]+)/$',views.singer_profile, name='singer_profile' ),
+
     # /music/album_rank/
     url(r'^album_rank/$',views.album_rank, name='album_rank' ),
 
     # /music/music_mood/
     url(r'^music_mood/$',views.music_mood, name='music_mood' ),
 
-    # /music/music_news/
-    url(r'^music_news/$',views.music_news, name='music_news' ),
+    # /music/music_critic/
+    url(r'^music_critic/$',views.music_critic, name='music_critic' ),
 
      # /music/favorite/
     #url(r'^(?P<album_id>[0-9]+)/favorite/$',views.favorite, name='favorite' ),

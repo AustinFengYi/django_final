@@ -1,8 +1,89 @@
+<style>
+.album-rank{
+  margin-top: 100px;
+}
+</style>
+
+
 {% extends 'music/base.html' %}
 {% block title %}排行榜{% endblock %}
 
 
 
 {% block body %}
+<section class="album-rank">
+  <div class="container">
+    <div class="col-md-12">
+      <!--<a href="{% url 'music:album-add' %}">新增專輯</a>-->
+      {% if all_albums %}
+      <h3><h3 style="margin-top: 30px;margin-bottom: 20px;">Here are all albums</h3></h3>
+      <table class="table table-striped table-bordered">
+        <tr>
+          <th class="text-center">歌手</th>
+          <th class="text-center">專輯名稱</th>
+          <th class="text-center">專輯收錄</th>
+        </tr>
 
+        <tr>
+        {% for album in all_albums %}
+          <td class="text-center">
+            <a href="{% url 'music:singer_show' album.singer.id %}">
+              <img src="{{ album.singer.singer_avatar.url }}" class="img-responsive" style="width:100px;border-radius: 50%;margin: 0 auto;">
+              <p style="margin-top: 10px;">{{ album.singer.singer_name }}</p>
+            </a>
+          </td>
+
+          <td class="text-center">
+            <a href="{% url 'music:detail' album.id %}">
+              <img src="{{ album.album_logo.url }}" class="img-responsive" style="width:100px;margin: 0 auto;">
+              <p style="margin-top: 10px;">{{ album.album_title }}</p>
+            </a>
+          </td>
+
+          <td class="text-center">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{album.id}}" style="margin: 40px 0;">
+              收聽
+            </button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="{{album.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <span class="modal-title" id="exampleModalLabel">
+                    {{ album.album_title }}
+                    </span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    {% for song in album.song_set.all %}
+                      
+                      <audio controls>
+                        <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                      </audio>
+                      <span style="padding-left: 20px;">
+                        {{ song.song_name }}
+                      </span>           
+                    {% endfor %}
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+          </td>
+          
+        </tr> 
+        {% endfor %}
+      </table>
+
+
+      {% else %}
+        <h3>you don't have an</h3>
+      {% endif %}
+    </div>
+  </div>
+</section>
 {% endblock %}

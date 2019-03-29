@@ -1,7 +1,9 @@
 <style>
-body {
+/*body {
   background: linear-gradient(45deg, #e10522 0%, rgba(225, 5, 34, 0) 70%), linear-gradient(225deg, #0adbd8 10%, rgba(10, 219, 216, 0) 80%), linear-gradient(315deg, #09f505 100%, rgba(9, 245, 5, 0) 70%);
 }
+*/
+
 .music_mood{
   margin-top: 100px;
 }
@@ -29,6 +31,7 @@ body {
   height: 100%;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
+  background-color: pink; 
   opacity: 0;
   z-index: -10;
   cursor: pointer;
@@ -335,26 +338,31 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
       </div>
 
       <!-- 心情點播 + 歌單列表-->
-      <h3>心情點播</h3>
+      <h3 style="margin-bottom: 15px;">心情點播</h3>
 
       <iframe width="700" height="400" src="https://www.youtube.com/embed/{{ str1 }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-      <form action="{% url 'music:music_mood' %}" method="post">
+      <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 20px;">
         {% csrf_token %}
         <input type="submit" name="happy" value="開心" class="btn btn-success"> 
         <input type="submit" name="emotion" value="抒情" class="btn btn-success"> 
         <input type="submit" name="high" value="嗨歌" class="btn btn-success"> 
       </form>  
       
+      {% if one_youtube %}
+      <h3>為您準備的歌曲</h3>
       <p>{{ one_youtube.song_name }}</p>
       <p><a href="{{ one_youtube.website }}" target="_blank">{{ one_youtube.website }}</a></p>  
+      {% endif %}
 
       <br><br>
-
+      {% if youtube %}
+      <h3>隨機播放清單</h3>
       {% for youtube in youtube %}
         <p>{{ youtube.song_name }}</p>
         <p><a href="{{ youtube.website }}" target="_blank">{{ youtube.website }}</a></p>
-      {% endfor%}      
+      {% endfor%}    
+      {% endif %}  
            
     </div>
   </div>

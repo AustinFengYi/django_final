@@ -1,7 +1,21 @@
 <style>
 .album-content{
-  margin-top: 160px;
+  margin-top: 130px;
 }
+
+.album-song{
+  margin-top: 40px;
+}
+
+.history-album{
+  margin-top: 40px;
+}
+
+.other-album{
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+
 </style>
 
 
@@ -15,10 +29,19 @@
       <div class="row-fluid row">
 
         <div class="col-md-3 row-fluid row">
-          <img src="{{ album.album_logo.url }}">
+          <h3>{{ album.album_title }}</h3>
+          <a href="{% url 'music:singer_show' album.singer.id %}"><h4 style="margin-top: 10px;">{{ album.singer.singer_name }}</h4></a>
+          <img src="{{ album.album_logo.url }}" style="margin-top: 10px;">
         </div>
 
-        <div class="col-md-9 row-fluid row"></div>
+        <div class="col-md-9 row-fluid row" style="margin-top: 60px;margin-left: 30px;">
+          <h3 style="margin-bottom: 20px;">專輯介紹</h3>
+          <h4 style="line-height: 25px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis quis beatae quo, magni, nesciunt aliquid distinctio, praesentium facilis quos sunt, itaque aliquam obcaecati! Eaque, maiores illum. Explicabo iure consectetur animi nostrum culpa maxime magnam, possimus quam tenetur sit! Amet fugiat similique voluptatum repudiandae quasi sed maiores, quisquam quos architecto nobis?</h4>
+          <div style="margin-top: 35px;">
+            <p>類型：{{ album.category.name }}</p>
+            <p>發行日期：{{ album.album_release_date }}</p> 
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -29,8 +52,107 @@
     <div class="col-md-12">
       <div class="row-fluid row">
         <h4>專輯歌曲 <span>( 共 {{ album.song_set.all.count }} 首)</span></h4>
+        <hr>
+        <!-- 專輯歌曲 -->
+        <table class="song-list table table-striped table-bordered">
+          <tr>
+            <th>No.</th>
+            <th>歌曲名</th>
+          </tr>
+
+          {% for song in album.song_set.all %}
+          <tr>
+            <td class="text-center">{{ forloop.counter }}</td>
+            <td>
+              <span>{{ song.song_name }}</span>
+              
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{song.id}}" style="float: right;">
+                收聽
+              </button>
+              
+              <!-- Modal -->
+              <div class="modal fade" id="{{song.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <span class="modal-title" id="exampleModalLabel">
+                      {{ song.album.album_title }}
+                      </span>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <audio controls>
+                        <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                      </audio>
+                      <span style="padding-left: 20px;">
+                        {{ song.song_name }}
+                      </span>           
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
       </div>
     </div>
   </div>
 </section>
+
+<section class="history-album">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="row-fluid row">
+        <h4 style="margin-bottom: 20px">歷年專輯 
+          <span>( 共 {{ album.singer.album_set.all.count }} 首) || </span>
+          <a href="{% url 'music:singer_show' album.singer.id %}"> 
+            <span style="font-size: 15px;">更多歷年專輯</span> 
+          </a>
+        </h4>
+        {% for album in album.singer.album_set.all|slice:":6"  %}
+          <div class="col-md-2 row-fluid row">
+            <div style="padding-right: 15px;">
+              <a href="{% url 'music:detail' album.id %}">
+                <img src="{{ album.album_logo.url }}" >
+              </a>
+              <a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a>
+              <a href="{% url 'music:singer_show' album.singer.id  %}"><p>{{ album.singer.singer_name }}</p></a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="other-album">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="row-fluid row">
+        <h4 style="margin-bottom: 20px">延伸聆聽</h4>
+        
+        {% for album in other_albums|slice:":6" %}
+        
+          <div class="col-md-2 row-fluid row">
+            <div style="padding-right: 15px;">
+              <a href="{% url 'music:detail' album.id %}">
+                <img src="{{ album.album_logo.url }}" >
+              </a>
+              <a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a>
+              <a href="{% url 'music:singer_show' album.singer.id  %}"><p>{{ album.singer.singer_name }}</p></a>
+            </div>
+          </div>
+        
+        {% endfor %}
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
 {% endblock %}

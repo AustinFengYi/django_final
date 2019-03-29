@@ -1,0 +1,40 @@
+<style>
+.music_critic{
+  margin-top: 100px;
+}
+</style>
+{% extends 'music/base.html' %}
+{% block title %}音樂專欄{% endblock %}
+
+
+
+{% block body %}
+<section class="music_critic">
+  <div class="container">
+    <div class="col-md-12">
+      <form action="{% url 'music:music_critic' %}" method="post" style="margin-top: 20px;" class="text-center">
+        {% csrf_token %}
+        <input type="submit" name="chinese" value="華語專輯評論" class="btn btn-success"> 
+        <input type="submit" name="japan_korea" value="日韓專輯評論" class="btn btn-success"> 
+        <input type="submit" name="western" value="西洋專輯評論" class="btn btn-success"> 
+      </form>  
+      
+      <!------------------------------------------------------>
+      {% for critic in critic %}
+      <div class="col-md-4" style="margin-top: 20px;">
+        {{ forloop.counter }}
+        <!--<a href="{{ critic.image_website }}" target="_blank">{{ critic.image_website }}</a><br>-->
+        <img src="{{ critic.image_website }}" style="width: 200px; border-radius: 90%;">
+        {{ critic.name }}<br>
+        <a href="{{ critic.link_website }}" target="_blank">{{ critic.link_website }}</a><br>
+        {{ critic.time }}
+        <br><hr>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+</section>
+
+
+{% endblock %}

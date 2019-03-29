@@ -106,31 +106,23 @@ img {
 /*=====================================================*/
 /*-------設定 index-corousel的 CSS 樣式----------*/
 .index-corousel{
-  padding:30px 0 50px 0;
+  padding:10px 0 50px 0;
 }
 
 #myCarousel{  
   background: #686a6e;
-  height: 450px;
+  height: 400px;
 }
 
 .slide-wrapper{
   padding: 10%;
-  margin-top: -50px;
+  margin-top: -70px;
 }
 
-.slide-content{
-  color: #fff;
-}
 
 .slide-image .thumbnail img{
   width: 100%;
   height: 300px;
-}
-
-.slide-content p{
-  font-size: 20px;
-  margin-top: 20px;
 }
 
 .slide-content a{
@@ -138,5 +130,43 @@ img {
 } 
 
 
+/*======================首頁 ===========================*/
+/*=====================================================*/
+/*-------設定  CSS 樣式----------*/
+.video-play{
+  padding: 15px;
+  height: 270px;
+  float: left;
+  width: 33%;
+  overflow: hidden;
+  position: relative;
+}
 
+.video-play img{
+  width:100%;
+  max-height: 200px;
+  transition: all 1s linear;
+}
+
+.video-play:hover img{
+  
+  
+  filter: brightness(0.4);
+}
+
+.video-play span{
+  position: absolute;
+  left: 150px;
+  bottom: 120px;
+  color: #fff;
+  font-size: 20px;
+  background: rgba(0,0,0,.6);
+  padding: 20px;
+  transform: scaleY(0);
+  transition: all .3s linear;
+}
+
+.video-play:hover span{
+  transform: scaleY(1);
+  transition: all .3s linear;
 

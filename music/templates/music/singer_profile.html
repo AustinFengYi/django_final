@@ -56,27 +56,21 @@
     <div class="col-md-12">
       <div class="row-fluid row">
         <ul class="nav nav-tabs nav-label">
-          <li role="presentation" class="active">
+          <li role="presentation">
             <a href="{% url 'music:singer_show' singer.id %}"><span>歷年專輯 ( {{ singer.album_set.count }} )</span></a> 
           </li>
-          <li role="presentation">
+          <li role="presentation" class="active">
             <a href="{% url 'music:singer_profile' singer.id %}"><span>個人檔案</span></a> 
           </li>
         </ul>
 
         <!-- album content -->
         <div class="album-list" style="margin-top: 35px;">
-          {% for album in singer.album_set.all %}
           <div class="row-fluid row">
-            <div class="col-md-2">
-              <a href="{% url 'music:detail' album.id %}">
-                <img src="{{album.album_logo.url}}">
-              </a>
-              <p><a href="{% url 'music:detail' album.id %}">{{album.album_title}}</a></p>
-              <p>{{album.singer.singer_name }}</p>
+            <div class="col-md-12">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, expedita. Voluptas molestiae est hic sit saepe unde ratione quo! Facere est in optio suscipit. Perspiciatis magni illo vel ullam quaerat sint amet reiciendis hic dignissimos dolore doloremque, veritatis voluptate quod eius quidem esse dicta cupiditate sit debitis. Repellat, hic. Quibusdam accusantium dolores voluptatibus dolor maxime recusandae odio laborum nulla, nostrum repellendus, quas, tempora pariatur nisi reprehenderit quos atque ab tempore labore vitae aspernatur! Consequatur est veritatis at pariatur sint obcaecati labore beatae voluptas dolorum, ad assumenda excepturi, distinctio saepe ut earum voluptates laudantium nesciunt quasi quaerat, harum repellendus eaque quidem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni neque eius, ad nobis nulla perferendis veniam officiis hic dolorum at laborum facere minima debitis maiores, similique numquam necessitatibus? Sit consequatur dicta, voluptatem odit qui non, laborum consequuntur accusamus. Nostrum saepe ratione hic tempore officiis sit! Sequi a officia rerum et sed doloribus aut quo soluta tempore ad perferendis excepturi aliquid quidem itaque cum maxime quaerat reprehenderit, alias blanditiis animi. Sapiente, nesciunt velit fugit impedit consequatur earum! Consequuntur error, quod voluptas rerum sed voluptates dolorum sint fuga cumque ipsum enim nihil dolorem dolor consequatur explicabo iure. Assumenda enim, error possimus excepturi.
             </div>
-          </div>
-          {% endfor %}
+          </div>  
         </div>
       </div>
     </div>

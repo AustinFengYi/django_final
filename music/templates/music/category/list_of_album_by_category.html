@@ -1,111 +1,9 @@
 <style>
-  html {
-  height: 100%;
-  display: table;
-  margin: auto;
+  
+.popular-singer{
+  margin-bottom: 50px;
 }
-
-body {
-  height: 100%;
-  display: table-cell;
-  vertical-align: middle;
-  background: yellow;
-}
-
-
 </style>
-
-<script>
-  function calculateTotalValue(length) {
-  var minutes = Math.floor(length / 60),
-    seconds_int = length - minutes * 60,
-    seconds_str = seconds_int.toString(),
-    seconds = seconds_str.substr(0, 2),
-    time = minutes + ':' + seconds
-
-  return time;
-}
-
-function calculateCurrentValue(currentTime) {
-  var current_hour = parseInt(currentTime / 3600) % 24,
-    current_minute = parseInt(currentTime / 60) % 60,
-    current_seconds_long = currentTime % 60,
-    current_seconds = current_seconds_long.toFixed(),
-    current_time = (current_minute < 10 ? "0" + current_minute : current_minute) + ":" + (current_seconds < 10 ? "0" + current_seconds : current_seconds);
-
-  return current_time;
-}
-
-function initProgressBar() {
-  var player = document.getElementById('player');
-  var length = player.duration
-  var current_time = player.currentTime;
-
-  // calculate total length of value
-  var totalLength = calculateTotalValue(length)
-  jQuery(".end-time").html(totalLength);
-
-  // calculate current value time
-  var currentTime = calculateCurrentValue(current_time);
-  jQuery(".start-time").html(currentTime);
-
-  var progressbar = document.getElementById('seekObj');
-  progressbar.value = (player.currentTime / player.duration);
-  progressbar.addEventListener("click", seek);
-
-  if (player.currentTime == player.duration) {
-    $('#play-btn').removeClass('pause');
-  }
-
-  function seek(evt) {
-    var percent = evt.offsetX / this.offsetWidth;
-    player.currentTime = percent * player.duration;
-    progressbar.value = percent / 100;
-  }
-};
-
-function initPlayers(num) {
-  // pass num in if there are multiple audio players e.g 'player' + i
-
-  for (var i = 0; i < num; i++) {
-    (function() {
-
-      // Variables
-      // ----------------------------------------------------------
-      // audio embed object
-      var playerContainer = document.getElementById('player-container'),
-        player = document.getElementById('player'),
-        isPlaying = false,
-        playBtn = document.getElementById('play-btn');
-
-      // Controls Listeners
-      // ----------------------------------------------------------
-      if (playBtn != null) {
-        playBtn.addEventListener('click', function() {
-          togglePlay()
-        });
-      }
-
-      // Controls & Sounds Methods
-      // ----------------------------------------------------------
-      function togglePlay() {
-        if (player.paused === false) {
-          player.pause();
-          isPlaying = false;
-          $('#play-btn').removeClass('pause');
-
-        } else {
-          player.play();
-          $('#play-btn').addClass('pause');
-          isPlaying = true;
-        }
-      }
-    }());
-  }
-}
-
-initPlayers(jQuery('#player-container').length);
-</script>
 
 {% extends 'music/base.html' %}
 {% block title %}{{ category.name }}{% endblock %}
@@ -145,21 +43,13 @@ initPlayers(jQuery('#player-container').length);
             <div class="container">
 
               <div class="slide-wrapper">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="slide-image">
                     <div class="thumbnail">
                       <!--img src="image/slide/slide-1.jpg" alt="slide-1"-->
                       {% load staticfiles %}
                       <img src="{% static 'music/images/slider/slide-1.jpg' %}"/> 
                     </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="slide-content">
-                    <h3>Lorem ipsum dolor sit.</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore dolor, cupiditate consectetur veritatis incidunt ratione!</p>
-                    <!--<a href="about-content.html" class="btn btn-primary">繼續閱讀</a>-->
                   </div>
                 </div>
               </div>
@@ -171,7 +61,7 @@ initPlayers(jQuery('#player-container').length);
             <div class="container">
 
               <div class="slide-wrapper">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="slide-image">
                     <div class="thumbnail">
                       <!--img src="image/slide/slide-2.jpg" alt="slide-1"-->
@@ -181,12 +71,6 @@ initPlayers(jQuery('#player-container').length);
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <div class="slide-content">
-                    <h3>Lorem ipsum dolor sit.</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste assumenda corporis, sequi.</p>
-                    <!--<a href="about-content.html" class="btn btn-primary">繼續閱讀</a>--> </div>
-                </div>
               </div>
             </div>
           </div>
@@ -195,7 +79,7 @@ initPlayers(jQuery('#player-container').length);
           <div class="item">
             <div class="container">
               <div class="slide-wrapper">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="slide-image">
                     <div class="thumbnail">
                       <!--img src="image/slide/slide-3.jpg" alt="slide-1"-->
@@ -205,13 +89,6 @@ initPlayers(jQuery('#player-container').length);
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <div class="slide-content">
-                    <h3>Research Highlight</h3>
-                    <p>In this paper, we demonstrate a simple approach of self-assembled process to form a very smooth and compacted TiO2 underlayer film from ultrafine titanium oxide (TiO2) nanocrystals with dimension of 4 nm for improving the electrical properties and device performances of dye-sensitized solar cells (DSSCs).</p>
-                    <!--<a href="about-content.html" class="btn btn-primary">繼續閱讀</a>-->
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -229,6 +106,7 @@ initPlayers(jQuery('#player-container').length);
         </a>
       </div>
     </div>
+  </div>
   </section>
 
   <section class="album-recommend">
@@ -236,19 +114,22 @@ initPlayers(jQuery('#player-container').length);
       <div class="col-md-12">
         <h3>影音推薦</h3>
         <div class="row-fluid row">
-          <div class="col-md-4" >
+          <div class="video-play" >
             <img src="https://img.youtube.com/vi/rD-T5pzH9b0/maxresdefault.jpg" alt="">
-            <h4>盧廣仲 Crowd Lu【愛情怎麼了嗎 Self-complacent】Official Music Video</h4>
+            <span>觀看影音</span>
+            <h4 style="margin-top: 20px;">盧廣仲 Crowd Lu【愛情怎麼了嗎 Self-complacent】Official Music Video</h4>
           </div>
 
-          <div class="col-md-4" >
+          <div class="video-play" >
             <img src="https://img.youtube.com/vi/Dab4EENTW5I/maxresdefault.jpg" alt="">
-            <h4>Stray Kids "MIROH" M/V</h4>
+            <span>觀看影音</span>
+            <h4 style="margin-top: 20px;">Stray Kids "MIROH" M/V</h4>
           </div>
 
-          <div class="col-md-4" >
+          <div class="video-play" >
             <img src="https://img.youtube.com/vi/nn48zwymeNA/maxresdefault.jpg" alt="">
-            <h4>Why Don't We - Cold in LA 寒冷洛杉磯 (華納official HD 高畫質官方中字版)</h4>
+            <span>觀看影音</span>
+            <h4 style="margin-top: 20px;">Why Don't We - Cold in LA 寒冷洛杉磯 (華納official HD 高畫質官方中字版)</h4>
           </div>
         </div>
       </div>
@@ -258,7 +139,7 @@ initPlayers(jQuery('#player-container').length);
   <section class="album-rank">
     <div class="container">
       <div class="col-md-12">
-        <h3>排行榜</h3>
+        <h3 style="margin-top: 30px;margin-bottom: 20px;">排行榜</h3>
         <div class="row-fluid row">
           <!--table1-->
           <div class="col-md-4">
@@ -279,34 +160,34 @@ initPlayers(jQuery('#player-container').length);
                   </div>
 
                   <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{song.id}}" style="float: right;">
-                  收聽
-                </button>
-                
-                <!-- Modal -->
-                <div class="modal fade" id="{{song.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <span class="modal-title" id="exampleModalLabel">
-                        {{ song.song_name }}
-                        </span>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body"> 
-                        <audio controls>
-                          <source src="{{ song.audio_file.url }}" type="audio/mpeg">
-                        </audio>
-                        <span style="padding-left: 20px;">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{song.id}}" style="float: right;">
+                    收聽
+                  </button>
+                  
+                  <!-- Modal -->
+                  <div class="modal fade" id="{{song.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <span class="modal-title" id="exampleModalLabel">
                           {{ song.song_name }}
-                        </span>           
+                          </span>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body"> 
+                          <audio controls>
+                            <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                          </audio>
+                          <span style="padding-left: 20px;">
+                            {{ song.song_name }}
+                          </span>           
+                        </div>
+                        <div class="clearfix"></div>
                       </div>
-                      <div class="clearfix"></div>
                     </div>
                   </div>
-                </div>
                 </td> 
               <tr> 
               {% endfor %}         
@@ -391,36 +272,36 @@ initPlayers(jQuery('#player-container').length);
                   </div>
 
                   <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{album.id}}" style="float: right;">
-                  收聽
-                </button>
-                
-                <!-- Modal -->
-                <div class="modal fade" id="{{album.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <span class="modal-title" id="exampleModalLabel">
-                        {{ album.album_title }}
-                        </span>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-                          <span aria-hidden="true">&times;</span>
-                        </button>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{album.id}}" style="float: right;">
+                    收聽
+                  </button>
+                  
+                  <!-- Modal -->
+                  <div class="modal fade" id="{{album.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <span class="modal-title" id="exampleModalLabel">
+                          {{ album.album_title }}
+                          </span>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          {% for song in album.song_set.all %}
+                            <audio controls>
+                              <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                            </audio>
+                            <span style="padding-left: 20px;">
+                              {{ song.song_name }}
+                            </span>           
+                          {% endfor %}
+                        </div>
+                        <div class="clearfix"></div>
                       </div>
-                      <div class="modal-body">
-                        {% for song in album.song_set.all %}
-                          <audio controls>
-                            <source src="{{ song.audio_file.url }}" type="audio/mpeg">
-                          </audio>
-                          <span style="padding-left: 20px;">
-                            {{ song.song_name }}
-                          </span>           
-                        {% endfor %}
-                      </div>
-                      <div class="clearfix"></div>
                     </div>
                   </div>
-                </div>
                 </td> 
               <tr>
               {% endfor %} 
@@ -434,7 +315,7 @@ initPlayers(jQuery('#player-container').length);
   <section class="popular-singer">
     <div class="container">
       <div class="col-md-12">
-        <h3>熱門歌手</h3>
+        <h3 style="margin-top: 20px;margin-bottom: 20px;">熱門歌手</h3>
         <div class="row-fluid row">
           <div class="singer-content">
             {% for singer in singers|slice:":6" %}

@@ -27,7 +27,7 @@ def favorite(request,album_id):
 from django.views import generic
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.core.urlresolvers import reverse_lazy
-from .models import Singer,Category,Album,Youtube,Song
+from .models import Singer,Category,Album,Youtube,Song,Critic
 from django.shortcuts import render, get_object_or_404
 
 
@@ -60,7 +60,9 @@ class IndexView(generic.ListView):
     return chain(all_albums, all_categories, all_singers)
 
 def album_rank(request):
-  return render(request,'music/album_rank.html')
+  all_albums = Album.objects.all()
+
+  return render(request,'music/album_rank.html',{'all_albums':all_albums})
 
 
 def music_mood(request):
@@ -105,8 +107,50 @@ def music_mood(request):
 
 
 
-def music_news(request):
-  return render(request,'music/music_news.html')
+def music_critic(request):
+  #刪除前一次操作 save 的資料
+  Critic.objects.all().delete()
+
+  # 需要選擇類型後才開始執行爬蟲
+  if request.method == 'POST':
+    # 選擇類型
+    if 'chinese' in request.POST:
+      url = "https://www.playmusic.tw/music_critics.php"
+    if 'japan_korea' in request.POST:
+      url = "https://www.playmusic.tw/music_critics.php?type=JK&selected=2"
+    if 'western' in request.POST:
+      url = "https://www.playmusic.tw/music_critics.php?type=Western&selected=1"
+    
+    html = requests.get(url)
+    #content = request.content
+    soup = BeautifulSoup(html.text, "html.parser")
+
+
+
+    for all_news in soup.select(".article_index"):
+        data_image = all_news.select("img")
+        html_image = "https://www.playmusic.tw/{}".format(data_image[0].get("src"))
+        
+        data = all_news.select(".text")
+        html_title = data[0].get_text()
+        
+        data_a = all_news.select("a")
+        html_website = "https://www.playmusic.tw/{}".format(data_a[0].get("href"))
+        
+        
+        data_date = all_news.select(".indent-top1")
+        html_date = data_date[0].get_text()
+
+        HttpResponse(Critic.objects.create(image_website= html_image,name = html_title, time = html_date, link_website = html_website))
+
+    critic =  Critic.objects.all()
+
+
+    context = { 'critic':critic }
+    return render(request,'music/music_critic.html',context)
+  else:
+    return render(request,'music/music_critic.html')
+  
 
 def list_of_album_by_category(request, category_id):
   categories = Category.objects.all()
@@ -124,9 +168,22 @@ def singer_show(request, singer_id):
   singer = get_object_or_404(Singer,pk=singer_id)
   return render(request, 'music/singer_show.html',{'singer':singer})
 
+# singer/profile
+def singer_profile(request, singer_id):
+  singer = get_object_or_404(Singer,pk=singer_id)
+  return render(request, 'music/singer_profile.html',{'singer':singer})
+
 class DetailView(generic.DetailView):
   model = Album
   template_name = 'music/detail.html'
+
+  def get_context_data(self, **kwargs):
+    # Call the base implementation first to get a context
+    context = super().get_context_data(**kwargs)
+    # Add in a QuerySet of all the books
+    
+    context['other_albums'] = Album.objects.all()
+    return context
 
 
 class AlbumCreate(CreateView):

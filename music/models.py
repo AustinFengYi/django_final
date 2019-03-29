@@ -59,5 +59,12 @@ class Youtube(models.Model):
   def __str__(self):
     return self.website + '-' + self.song_name
 
+class Critic(models.Model):
+  image_website = models.CharField(max_length=500)
+  name = models.CharField(max_length=50)
+  time = models.CharField(max_length=50)
+  link_website = models.CharField(max_length=500)
 
+  def __str__(self):
+    return self.name + '-' + self.time
 
