@@ -34,9 +34,39 @@
               <td>
                 <span>{{ forloop.counter}}</dpan>
                 <span style="padding-left: 20px;">
-                  <a href="{% url 'music:detail' album.id %}">
+                  <a href="{% url 'music:detail' song.id %}">
                     <strong><em>{{ song.album_title }}</em></strong>
                   </a>
+
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{song.id}}" style="float: right;">
+                    收聽
+                  </button>
+                  
+                  <!-- Modal -->
+                  <div class="modal fade" id="{{song.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <span class="modal-title" id="exampleModalLabel">
+                          {{ album.album_title }}
+                          </span>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body"> 
+                          <audio controls>
+                            <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                          </audio>
+                          <span style="padding-left: 20px;">
+                            {{ song.song_name }}
+                          </span>           
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
                   
                   <span style="padding-left: 20px;">{{ song.song_name }}</span>
                 </span>
@@ -67,15 +97,15 @@
         <!-- album content -->
         <div class="album-list" style="margin-top: 35px;">
           {% for album in singer.album_set.all %}
-          <div class="row-fluid row">
-            <div class="col-md-2">
+          
+            <div class="col-md-2" style="height: 250px;">
               <a href="{% url 'music:detail' album.id %}">
                 <img src="{{album.album_logo.url}}">
               </a>
               <p><a href="{% url 'music:detail' album.id %}">{{album.album_title}}</a></p>
               <p>{{album.singer.singer_name }}</p>
             </div>
-          </div>
+          
           {% endfor %}
         </div>
       </div>

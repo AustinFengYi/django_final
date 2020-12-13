@@ -6,6 +6,7 @@
 
 .music_mood{
   margin-top: 100px;
+  margin-bottom: 50px;
 }
 
 .absolute-center,
@@ -267,8 +268,8 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
           <div class="btn btn-icon"> 
             <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
               {% csrf_token %}
-              <h3 >開心 </h3>
-              <input type="submit" name="happy" value="開心" class="btn btn-success">  
+              <h3 >抒情 </h3>
+              <input type="submit" name="emotion" value="抒情" class="btn btn-success">  
             </form>  
           </div>
         </div>
@@ -276,8 +277,8 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
           <div class="btn btn-icon">
             <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
               {% csrf_token %}
-              <h3 >開心 </h3>
-              <input type="submit" name="happy" value="開心" class="btn btn-success">  
+              <h3 >狂歡 </h3>
+              <input type="submit" name="high" value="狂歡" class="btn btn-success">  
             </form>
           </div>
         </div>
@@ -294,8 +295,8 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
           <div class="btn btn-icon">
             <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
               {% csrf_token %}
-              <h3 >開心 </h3>
-              <input type="submit" name="happy" value="開心" class="btn btn-success">  
+              <h3 >療癒 </h3>
+              <input type="submit" name="cure" value="療癒" class="btn btn-success">  
             </form>
           </div>
         </div>
@@ -303,8 +304,8 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
           <div class="btn btn-icon">
             <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
               {% csrf_token %}
-              <h3 >開心 </h3>
-              <input type="submit" name="happy" value="開心" class="btn btn-success">  
+              <h3 >勵志 </h3>
+              <input type="submit" name="encourage" value="勵志" class="btn btn-success">  
             </form>
           </div>
         </div>
@@ -312,8 +313,8 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
           <div class="btn btn-icon">
             <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
               {% csrf_token %}
-              <h3 >開心 </h3>
-              <input type="submit" name="happy" value="開心" class="btn btn-success">  
+              <h3 > 沈澱 </h3>
+              <input type="submit" name="muse" value="沈澱" class="btn btn-success">  
             </form>
           </div>
         </div>
@@ -321,8 +322,8 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
           <div class="btn btn-icon">
             <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
               {% csrf_token %}
-              <h3 >開心 </h3>
-              <input type="submit" name="happy" value="開心" class="btn btn-success">  
+              <h3 >老歌 </h3>
+              <input type="submit" name="old" value="老歌" class="btn btn-success">  
             </form>
           </div>
         </div>
@@ -330,7 +331,7 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
           <div class="btn btn-icon">
             <form action="{% url 'music:music_mood' %}" method="post" style="margin-top: 15px;" >
               {% csrf_token %}
-              <h3 >開心 </h3>
+              <h3 >電音 </h3>
               <input type="submit" name="happy" value="開心" class="btn btn-success">  
             </form>
           </div>
@@ -346,7 +347,11 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
         {% csrf_token %}
         <input type="submit" name="happy" value="開心" class="btn btn-success"> 
         <input type="submit" name="emotion" value="抒情" class="btn btn-success"> 
-        <input type="submit" name="high" value="嗨歌" class="btn btn-success"> 
+        <input type="submit" name="high" value="狂歡" class="btn btn-success"> 
+        <input type="submit" name="cure" value="療癒" class="btn btn-success"> 
+        <input type="submit" name="encourage" value="勵志" class="btn btn-success">
+        <input type="submit" name="muse" value="沈澱" class="btn btn-success"> 
+        <input type="submit" name="old" value="老歌" class="btn btn-success"> 
       </form>  
       
       {% if one_youtube %}

@@ -27,6 +27,7 @@ def favorite(request,album_id):
 from django.views import generic
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.core.urlresolvers import reverse_lazy
+#from django.urls import reverse_lazy
 from .models import Singer,Category,Album,Youtube,Song,Critic
 from django.shortcuts import render, get_object_or_404
 
@@ -73,11 +74,20 @@ def music_mood(request):
   if request.method == 'POST':
     # 選擇心情
     if 'high' in request.POST:
-      url = "https://www.youtube.com/playlist?list=PLtAw-mgfCzRydST1D3nER8Sp-dLLM4mbT"
+      url = "https://www.youtube.com/playlist?list=PLhaT1N8Bz7XycP6eK5VRcmY7r-jmbawb-"
     if 'emotion' in request.POST:
-      url = "https://www.youtube.com/playlist?list=PLA3DA2BBAAD48990D"
+      url = "https://www.youtube.com/playlist?list=PLtAw-mgfCzRydST1D3nER8Sp-dLLM4mbT"
+      #url = "https://www.youtube.com/playlist?list=PLA3DA2BBAAD48990D"
     if 'happy' in request.POST:
       url = "https://www.youtube.com/playlist?list=PLsyOSbh5bs16vubvKePAQ1x3PhKavfBIl"
+    if 'cure' in request.POST:
+      url="https://www.youtube.com/playlist?list=PLmaQtAlowFu2DTqKKPv12gWAtLqSii7x6"
+    if 'encourage' in request.POST:
+      url="https://www.youtube.com/playlist?list=PLT51bBpqYvvSl7nkAEJBdjnJIRETU0ky7"
+    if 'muse' in request.POST:
+      url="https://www.youtube.com/playlist?list=PLIUQkgu6AQrMXIe5xXaL1bcaeuVu1um_7"
+    if 'old' in request.POST:
+      url = "https://www.youtube.com/playlist?list=PLdShC-z2Peam1sLbMJul6Zbg5bOVpXv-A"
     html = requests.get(url)
     #content = request.content
     soup = BeautifulSoup(html.text, "html.parser")

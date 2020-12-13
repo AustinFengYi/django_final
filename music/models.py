@@ -1,9 +1,11 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+#from django.urls import reverse
 
+ 
 # Create your models here.
 class Singer(models.Model):
-  category = models.ForeignKey("Category")
+  category = models.ForeignKey("Category", on_delete=models.PROTECT)
   singer_name = models.CharField(max_length = 50)
   singer_intro = models.CharField(max_length = 1000,blank=True)
   singer_avatar = models.FileField(blank=True)
@@ -22,8 +24,8 @@ class Category(models.Model):
     #return reverse('music:list_of_album_by_category', kwargs={'pk':self.pk})
 
 class Album(models.Model):
-  category = models.ForeignKey(Category)
-  singer = models.ForeignKey(Singer)
+  category = models.ForeignKey(Category, on_delete=models.PROTECT)
+  singer = models.ForeignKey(Singer, on_delete=models.PROTECT)
   album_title = models.CharField(max_length = 500)
   album_logo = models.FileField()
   album_intro = models.CharField(max_length = 1000)
@@ -40,8 +42,8 @@ class Album(models.Model):
     return self.album_title + ' - ' + self.album_release_date + ' - ' + self.album_intro
 
 class Song(models.Model):
-  singer = models.ForeignKey(Singer)
-  category = models.ForeignKey(Category)
+  singer = models.ForeignKey(Singer, on_delete=models.PROTECT)
+  category = models.ForeignKey(Category, on_delete=models.PROTECT)
   album = models.ForeignKey(Album, on_delete=models.CASCADE)
   song_name = models.CharField(max_length = 100)
   song_lyric = models.CharField(max_length = 1000,blank=True)

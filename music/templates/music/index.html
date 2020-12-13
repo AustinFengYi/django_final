@@ -163,7 +163,7 @@
 
 
           <div class="video-play" >
-            <img src="https://img.youtube.com/vi/Dab4EENTW5I/maxresdefault.jpg" alt="">
+            <img src="https://img.youtube.com/vi/Ra-Om7UMSJc/maxresdefault.jpg" alt="">
             <!--------------------------------------------------------------------->
             <!-- Button trigger modal -->
             <span>
@@ -177,7 +177,7 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-body"> 
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Dab4EENTW5I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>       
+                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Ra-Om7UMSJc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
                   </div>
                   <div class="clearfix"></div>
                 </div>
@@ -230,7 +230,7 @@
                 <th class="text-center">華語榜單</th>
               </tr>
 
-              {% for album in all_albums|slice:":6" %}  
+              {% for album in all_albums|slice:":8" %}  
                 {% if album.category_id = 1 %} 
                 <tr>             
                   <td>
@@ -289,7 +289,7 @@
                 <th class="text-center">西洋榜單</th>
               </tr>
 
-              {% for album in all_albums|slice:":6" %}  
+              {% for album in all_albums %}  
                 {% if album.category_id = 2 %} 
                 <tr>             
                   <td>
@@ -348,7 +348,7 @@
                 <th class="text-center">台語榜單</th>
               </tr>
 
-              {% for album in all_albums|slice:":6" %}  
+              {% for album in all_albums %}  
                 {% if album.category_id = 3 %} 
                 <tr>             
                   <td>
