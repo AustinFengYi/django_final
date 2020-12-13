@@ -68,7 +68,7 @@ def album_rank(request):
 
 def music_mood(request):
   #刪除前一次操作 save 的資料
-  Youtube.objects.all().delete()
+  Youtube.objects.all().delete() 
 
   # 需要選擇心情後才開始執行爬蟲選歌
   if request.method == 'POST':
